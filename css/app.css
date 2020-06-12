@@ -1,0 +1,133 @@
+#table {
+    width:1280px;
+    background-image: url("../img/table.jpeg");
+    margin: auto;
+    border-style: groove;
+    border-color: black;
+}
+
+/* Bottom player */
+
+#player-bottom {
+    margin: auto;
+    height: 175px;
+    margin: auto;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+#card-play-bottom {
+    height: 150px;
+    margin: auto;
+    border-style: hidden;
+    border-radius: 5px;
+    box-shadow: 2.5px 2.5px 1.25px #000;
+}
+
+#player-bottom .timer-hor {
+    margin-bottom: 10px;
+}
+
+#player-bottom .card-ver:hover {
+    margin-top: -20px;
+}
+
+#player-bottom .card-ver {
+    cursor: pointer;
+}
+
+/* Left player */
+
+#player-left {
+    margin-top: 90px;
+    margin-left: 30px;
+    height: 50%;
+    width: 150px;
+}
+
+#card-play-left {
+    height: 150px;
+    margin: auto;
+    border-style: hidden;
+    border-radius: 5px;
+    box-shadow: 2.5px 2.5px 1.25px #000;
+}
+
+/* Top player */
+
+#player-top {
+    margin: auto;
+    height: 150px;
+    margin: auto;
+    width: 50%;
+    margin-top: 10px;
+}
+
+#card-play-top {
+    height: 150px;
+    margin: auto;
+    border-style: hidden;
+    border-radius: 5px;
+    box-shadow: 2.5px 2.5px 1.25px #000;
+}
+
+/* Right player */
+
+#player-right {
+    float: right;
+    margin-right: 10px;
+    margin-top: 90px;
+    height: 500px;
+    width: 100px;
+}
+
+#card-play-right {
+    height: 150px;
+    margin: auto;
+    border-style: hidden;
+    border-radius: 5px;
+    box-shadow: 2.5px 2.5px 1.25px #000;
+}
+
+/* Timers */
+
+.timer-hor {
+    margin: auto;
+    width: 50%;
+    background-color: green;
+}
+
+.bar-hor {
+    width: 0%;
+    height: 10px;
+    background-color: grey;
+}
+
+/* Stack */
+
+#stack {
+    margin-top: 25%;
+}
+
+/* Cards */
+
+.card-ver {
+    height: 150px;
+    margin-left: -30px;
+    border-style: hidden;
+    border-radius: 5px;
+    box-shadow: 2.5px 2.5px 1.25px #000;
+}
+
+.card-hor {
+    height: 150px;
+    margin-top: -95px;
+    border-style: hidden;
+    border-radius: 5px;
+    box-shadow: 2.5px 2.5px 1.25px #000;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
