@@ -1,6 +1,6 @@
 #table {
     width:1280px;
-    background-image: url("../img/table.jpeg");
+    background-image: url("../assets/img/table.jpeg");
     margin: auto;
     border-style: groove;
     border-color: black;
@@ -17,8 +17,11 @@
 }
 
 #card-play-bottom {
+    z-index: 4;
+    position: relative;
     height: 150px;
     margin: auto;
+    margin-top: -70px;
     border-style: hidden;
     border-radius: 5px;
     box-shadow: 2.5px 2.5px 1.25px #000;
@@ -39,18 +42,26 @@
 /* Left player */
 
 #player-left {
-    margin-top: 90px;
     margin-left: 30px;
     height: 50%;
     width: 150px;
 }
 
 #card-play-left {
+    z-index: 1;
+    position: relative;
     height: 150px;
     margin: auto;
+    margin-left: 70px;
     border-style: hidden;
     border-radius: 5px;
     box-shadow: 2.5px 2.5px 1.25px #000;
+}
+
+#player-left .timer-ver {
+    margin-left: 125px;
+    margin-top: 150px;
+    margin-bottom: -370px;
 }
 
 /* Top player */
@@ -58,17 +69,23 @@
 #player-top {
     margin: auto;
     height: 150px;
-    margin: auto;
     width: 50%;
     margin-top: 10px;
 }
 
 #card-play-top {
+    z-index: 2;
+    position: relative;
     height: 150px;
     margin: auto;
+    margin-bottom: -60px;
     border-style: hidden;
     border-radius: 5px;
     box-shadow: 2.5px 2.5px 1.25px #000;
+}
+
+#player-top .timer-hor {
+    margin-top: 10px;
 }
 
 /* Right player */
@@ -82,19 +99,29 @@
 }
 
 #card-play-right {
+    z-index: 2;
+    position: relative;
     height: 150px;
     margin: auto;
+    margin-left: -90px;
     border-style: hidden;
     border-radius: 5px;
     box-shadow: 2.5px 2.5px 1.25px #000;
+}
+
+#player-right .timer-ver {
+    position: absolute;
+    margin-left: -60px;
+    margin-top: 65px;
+    margin-bottom: -370px;
 }
 
 /* Timers */
 
 .timer-hor {
     margin: auto;
-    width: 50%;
-    background-color: green;
+    width: 300px;
+    background-color: grey;
 }
 
 .bar-hor {
@@ -103,10 +130,23 @@
     background-color: grey;
 }
 
+.timer-ver {
+    margin: auto;
+    height: 300px;
+    width: 10px;
+    background-color: grey;
+}
+
+.bar-ver {
+    height: 0%;
+    width: 10px;
+    background-color: grey;
+}
+
 /* Stack */
 
 #stack {
-    margin-top: 25%;
+    margin-top: 47.5%;
 }
 
 /* Cards */
