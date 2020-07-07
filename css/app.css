@@ -181,3 +181,11 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+/* Front page */
+.front-center {
+    margin: 0px;
+    position: absolute;
+    top: 40%;
+    left: 0%;
+}

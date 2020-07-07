@@ -1,75 +1,98 @@
 <?php
+    require_once 'database/db_class.php';
 
-    function is_logingIn() {
-        if(isset($_POST["login_button"])) 
-            return true;
-        else
-            return false;
-    }
-
-    function login_user() {
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-
+    function login_user($user, $pass) {
         $db = DB::getConnection();
 
         try {
-            $st = $db->prepare("SELECT * FROM dz2_users WHERE username=:user");
-            $st->execute(["user" => $username]);
+            $st = $db->prepare("SELECT * FROM treseta_users WHERE user_name=:user");
+            $st->execute(["user" => $user]);
         }
-        catch( PDOException $e ) { 
-            echo "Greška:" . $e->getMessage(); 
+        catch( PDOException $e ) {  
             return false; 
         }
 
         if($st->rowCount() !== 1) {
-            echo "User with that name doesn't exist!";
             return false;
         }
         
         $row = $st->fetch();
-        $id = $row["id"];
-        $username = $row["username"];
-        $password_hash = $row["password_hash"];
-        $email = $row["email"];
-        $complete_registration = $row["has_registered"];
+        $id = $row["user_id"];
+        $username = $row["user_name"];
+        $password_hash = $row["user_pass"];
 
-        if(password_verify($password, $password_hash)) {
-            return array($id,$username,$password_hash,$email,$complete_registration);
+        if(password_verify($pass, $password_hash)) {
+            return $id;
         }
         else {
-            echo "Wrong password!";
             return false;
         }
     }
 
-    function is_registering() {
-        if (isset($_POST["register_button"]))
-            return true;
-        else
-            return false;
-    }
-
-    function register_user() {
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-        
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        
+    
+    function register_user($user, $pass) {
         $db = DB::getConnection();
 
-        // Tribat će prilagodit imenima stupcima u našoj databazi
-        $st = $db->prepare("INSERT INTO Users (username, password_hash) VALUES (:user, :pass)");
-        $st->execute(["user" => $username, "pass" => $password_hash]);
+        // Provjera je li username zauzet
+        try {
+            $st = $db->prepare("SELECT * FROM treseta_users WHERE user_name=:user");
+            $st->execute(["user" => $user]);
+        }
+        catch(PDOException $e) { 
+            return false; 
+        }
+
+        if($st->rowCount() !== 0) {
+            return false;
+        }
+
+        // Ubacivanje novog korisnika u tablicu treseta_users
+        $password_hash = password_hash($pass, PASSWORD_DEFAULT);
+        try {
+            $st = $db->prepare("INSERT INTO treseta_users (user_name, user_pass) VALUES (:user, :pass)");
+            $st->execute(["user" => $user, "pass" => $password_hash]);    
+        }
+        catch(PDOException $e) { 
+            return false; 
+        }
 
         if($st->rowCount() !== 1) {
-            echo "Registering failed!";
+            return false;
         }
         else {
             echo "You have registered successfully!";
         }
+    }
 
-        // Di da nas odvede kad završimo funkciju, opet na istu stranicu?
-        // echo "<br><a href="index.php">Return to login page.</a>;
+    function sendJSONandExit($message) {
+        header('Content-type:application/json;charset=utf-8');
+        echo json_encode($message);
+        flush();
+        exit(0);
+    }
+
+    // action je login ili register
+    if(isset($_GET["user"]) && isset($_GET["pass"]) && isset($_GET["action"])) {
+        $user = $_GET["user"];
+        $pass = $_GET["pass"];
+        $action = $_GET["action"];
+
+        if($action === "login") {
+            $id = login_user($user, $pass);
+            
+	        $message = [];
+        	$message["id"] = $id;
+            sendJSONandExit($message);
+        }
+        else if($action === "register") {
+            register_user($user, $pass);
+        }
+        else {
+            echo "error";
+        }
+    }
+
+    else {
+        echo "Data not sent.";
     }
 ?>
