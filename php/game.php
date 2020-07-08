@@ -9,6 +9,16 @@ require_once __DIR__ . '/database/db_class.php';
 
 if(isset($_GET) && isset($_GET['function']))
 {
+    if($_GET['function'] == 'exit')
+    {
+        $room = $_SESSION['room_id'];
+        $db = DB::getConnection();
+        $st = $db->prepare("DELETE FROM treseta_rooms WHERE room_id=:room");
+        $st->execute();
+
+        $st = $db->prepare("DELETE FROM treseta_games WHERE room_id=:room");
+        $st->execute();
+    }
     if($_GET['function'] == 'wait')
     {
         $room = $_SESSION['room_id'];

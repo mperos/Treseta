@@ -14,9 +14,25 @@
         <title>Trešeta</title>
     </head>
     <body>
+        <form style="display: none" action="frontpage.html" method="POST" id="game_form">
+            <input type="hidden" id="login_id" name="login_id" value=""/>
+            <input type="hidden" id="room_id" name="room_id" value=""/>
+        </form>
         <div class="container" id="table">
             <div class="row">
                 <div class="col">
+                    <div id="points">
+                        <table>
+                            <tr>
+                              <th style="font-size:30px">Mi</th>
+                              <th style="font-size:30px">Vi</th>
+                            </tr>
+                            <tr>
+                              <td id="mi" style="font-size:30px">0</td>
+                              <td id="vi" style="font-size:30px">0</td>
+                            </tr>
+                        </table>
+                    </div>
                     <div id="player-top">
                         <img class="card-ver" src="assets/img/cards/back.png" />
                         <img class="card-ver" src="assets/img/cards/back.png" />

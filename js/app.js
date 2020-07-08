@@ -349,6 +349,31 @@ async function simulate_player()
         });
 }
 
+async function set_points()
+{
+    await $.get("./php/game.php", { function: 'loadturn'}, function(data){
+        newdata = JSON.parse(data);
+        var p1 = newdata[newdata.user_order[0]]+newdata[newdata.user_order[2]];
+        var p2 = newdata[newdata.user_order[1]]+newdata[newdata.user_order[3]];
+        
+        p1=Math.floor(p1/3);
+        p2=Math.floor(p2/3);
+
+        if(newdata.user_order[0] == user_id || newdata.user_order[2]==user_id)
+        {
+            $("#mi").html(p1);
+            $("#vi").html(p2);
+        }
+        else
+        {
+            $("#mi").html(p2);
+            $("#vi").html(p1);
+        }
+
+        });
+
+}
+
 async function play_game()
 {
     while(1) {
@@ -365,6 +390,7 @@ async function play_game()
         }
         if(turn%4 == 0)
         {
+            alert(turn);
             await $.get("./php/game.php", { function: 'myturn'}, function(data){
                 user_turn = parseInt(data);
             });
@@ -502,20 +528,44 @@ var poruka = "";
 
 async function is_end()
 {
-    await $.get("./php/game.php", { function: 'loadturn'}, function(data){
+    await $.get("./php/game.php", { function: 'loadturn'}, async function(data){
         newdata = JSON.parse(data);
         var p1 = newdata[newdata.user_order[0]]+newdata[newdata.user_order[2]];
         var p2 = newdata[newdata.user_order[1]]+newdata[newdata.user_order[3]];
-        if(p1>-1 || p2>-1)
+
+        p1=Math.floor(p1/3);
+        p2=Math.floor(p2/3);
+        newdata[newdata.user_order[0]] = p1;
+        newdata[newdata.user_order[1]] = p2;
+        newdata[newdata.user_order[2]] = 0;
+        newdata[newdata.user_order[3]] = 0;
+        await $.get("./php/game.php", { function: 'setturn', cards: JSON.stringify(newdata)}, function(data){
+        });
+
+        if(p1>40 || p2>40)
         {
+            if(p1>p2)
+            {
                 if(newdata.user_order[0] == user_id || newdata.user_order[2]==user_id)
                 {
                     poruka = "<p>Pobjedili ste!</p><p>" + p1 + " : "+ p2+"</p>";
                 }
                 else
                 {
+                    poruka = "<p>Izgubili ste!</p><p>" + p2 + " : "+ p1+"</p>";
+                }
+            }
+            else
+            {
+                if(newdata.user_order[0] == user_id || newdata.user_order[2]==user_id)
+                {
                     poruka = "<p>Izgubili ste!</p><p>" + p1 + " : "+ p2+"</p>";
                 }
+                else
+                {
+                    poruka = "<p>Pobjedili ste!</p><p>" + p2 + " : "+ p1+"</p>";
+                }
+            }
             game_over = true;
         }
         });
@@ -552,7 +602,7 @@ async function wait_start()
 
 async function start_treseta()
 {
-    await send_data();
+    /*await send_data();
     while(you_cant_start_game)
     {
         await wait_start();
@@ -579,6 +629,7 @@ async function start_treseta()
     while(1)
     {
         await is_end();
+        await set_points();
         if(game_over)
             break;
         
@@ -591,7 +642,17 @@ async function start_treseta()
         {
             await set_cards();
         }
-    }
+    }*/
+    poruka+= '<button id="exitnow" value ="Exit"> Exit </button>';
+    
+    $("#exitnow").click(function() { 
+        alert(12);
+        $.get("./php/game.php", { function: 'exit'}, function(data){
+            $("#login_id").val(getCookie("login_id"));
+            $("#room_id").val(getCookie("room_id"));
+            $("#game_form").submit();
+        });
+    });
     $("#stack").html("").append(poruka);
 }
 
@@ -630,7 +691,6 @@ $(document).ready(function() {
     });
 
     // setInterval(function(){ getGameStatus(); }, 500);
-    
 
 
     start_treseta();
