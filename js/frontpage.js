@@ -31,21 +31,19 @@ function rooms() {
         type: "GET",
         success: function(data) {
             console.log("All rooms!");
+            $("#front-page").css("width", "100%").css("text-align", "center").css("display", "flex").css("justify-content","center");
+            
             $("#front-page").html("");
-            $("#front-page").append("<table>");
-            $("#front-page").append("<tr> <th> Room Name </th> <th> Number of users </th> <th> Enter </th> </tr>");
+            $("#front-page").append("<table id='tablica' style='align-self: center;'>");
+            $("#tablica").append("<tr> <th> Room Name </th> <th> Number of users </th> <th> Enter </th> </tr>");
             
             for (var i = 0; i < data["room_id"].length; i++) {
-                $("#front-page").append("<tr>");
                 var room_id = data["room_id"][i];
                 var room_name = data["room_name"][i];
                 var room_users = JSON.parse(data["room_users"][i]);
                 
-                $("#front-page").append("<td>" + room_name + "</td>");
-                $("#front-page").append("<td>" + room_users.users.length + "</td>");
-                $("#front-page").append("<td> <button id='btn_" + room_id + "' value ='" + room_id + "'> Enter </button> </td>");
-                $("#front-page").append("</tr>");
-
+                $("#tablica").append("<tr> <td>" + room_name + "</td> <td>" + room_users.users.length + "</td> <td> <button id='btn_" + room_id + "' value ='" + room_id + "'> Enter </button> </td> </tr>");
+        
                 $("#btn_" + room_id).click(function() { 
                     enter_room($(this).val())
                 });
@@ -69,6 +67,7 @@ function new_room() {
         type: "GET",
         success: function(data) {
             console.log("New room!");
+            $("#front-page").css("width", "100%").css("text-align", "center").css("display", "flex").css("justify-content","center");
             $("#front-page").html("");
             $("#front-page").html(data);
             
@@ -93,6 +92,7 @@ function create_room() {
         type: "GET",
         success: function(data) {
             console.log("Create room!");
+            $("#front-page").css("width", "100%").css("text-align", "center").css("display", "flex").css("justify-content","center");
             $("#front-page").html("");
             $("#front-page").html(data);
         },
@@ -113,6 +113,7 @@ function logout() {
         },
         type: "GET",
         success: function() {
+            $("#front-page").css("width", "100%").css("text-align", "center").css("display", "flex").css("justify-content","center");
             $("#front-page").html("");
             /*
             $.getScript("cookies.js", function() {

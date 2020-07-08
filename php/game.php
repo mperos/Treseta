@@ -116,9 +116,6 @@ if(isset($_GET) && isset($_GET['function']))
     }
 }
 
-
-
-
 exit(0);
 
 

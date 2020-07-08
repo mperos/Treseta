@@ -602,7 +602,6 @@ async function wait_start()
 async function start_treseta()
 {
     await send_data();
-    /*
     while(you_cant_start_game)
     {
         await wait_start();
@@ -641,7 +640,7 @@ async function start_treseta()
         {
             await set_cards();
         }
-    }*/
+    }
     poruka+= '<button id="exitnow" value ="Exit"> Exit </button>';
     $("#stack").css("text-align", "center");
     $("#stack").html("").append(poruka);
