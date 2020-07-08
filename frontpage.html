@@ -9,12 +9,16 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/cookies.js"></script>
-        <script src="js/login.js"></script>
-        <title>Trešeta - Login</title>
+        <script src="js/frontpage.js"></script>
+        <style> 
+            table, th, td { border: 2px solid black; }
+        </style>
+        <title>Trešeta - Frontpage</title>
     </head>
-    <body onunload="saveLoginData()">
-        <form style="display: none" action="frontpage.html" method="POST" id="login_form">
+    <body onunload="saveGameData()">
+        <form style="display: none" action="game.html" method="POST" id="game_form">
             <input type="hidden" id="login_id" name="login_id" value=""/>
+            <input type="hidden" id="room_id" name="room_id" value=""/>
         </form>
 
         <div class="container" id="table">
@@ -53,13 +57,10 @@
 
                 <div class="col">
                     <div id="stack">
-                        <div class="login-center">
-                            <label for="name"> <b> Username: </b> </label>
-                            <input type="text" name="name" id="name"> <br>
-                            <label for="pass"> <b> Password: </b> </label>
-                            <input type="password" name="pass" id="pass"> <br>
-                            <button id="login"> Login! </button>
-                            <button id="register"> Register! </button>
+                        <button id="rooms"> Rooms </button>
+                        <button id="new_room"> New Room </button>
+                        <button id="logout"> Logout </button> <br>
+                        <div class="front-center" id="front-page">
                         </div>
                     </div>
                 </div>

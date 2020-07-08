@@ -14,7 +14,7 @@ class DB
 		    	DB::$db-> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    }
 		    catch(PDOException $e) { 
-                exit( 'PDO Error: ' . $e->getMessage() ); 
+                exit("PDO Error: " . $e->getMessage()); 
             }
 	    }
 		return DB::$db;

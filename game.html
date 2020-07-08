@@ -8,15 +8,12 @@
         <link rel="stylesheet" href="css/app.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/app.js"></script>
         <script src="js/cookies.js"></script>
-        <script src="js/login.js"></script>
-        <title>Trešeta - Login</title>
-    </head>
-    <body onunload="saveLoginData()">
-        <form style="display: none" action="frontpage.html" method="POST" id="login_form">
-            <input type="hidden" id="login_id" name="login_id" value=""/>
-        </form>
 
+        <title>Trešeta</title>
+    </head>
+    <body>
         <div class="container" id="table">
             <div class="row">
                 <div class="col">
@@ -31,6 +28,7 @@
                         <img class="card-ver" src="assets/img/cards/back.png" />
                         <img class="card-ver" src="assets/img/cards/back.png" />
                         <img class="card-ver" src="assets/img/cards/back.png" />
+                        <div class="timer-hor"><div class="bar-hor"></div></div>
                     </div>
                 </div>
             </div>
@@ -38,6 +36,7 @@
             <div class="row">
                 <div class="col">
                     <div id="player-left">
+                        <div class="timer-ver"><div class="bar-ver"></div></div>
                         <img class="card-hor" src="assets/img/cards/back.png" />
                         <img class="card-hor" src="assets/img/cards/back.png" />
                         <img class="card-hor" src="assets/img/cards/back.png" />
@@ -53,19 +52,27 @@
 
                 <div class="col">
                     <div id="stack">
-                        <div class="login-center">
-                            <label for="name"> <b> Username: </b> </label>
-                            <input type="text" name="name" id="name"> <br>
-                            <label for="pass"> <b> Password: </b> </label>
-                            <input type="password" name="pass" id="pass"> <br>
-                            <button id="login"> Login! </button>
-                            <button id="register"> Register! </button>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col"><img id="card-play-top" class="stack-card" src="" /></div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><img id="card-play-left" class="stack-card" src="" /></div>
+                            <div class="col"></div>
+                            <div class="col"><img id="card-play-right" class="stack-card" src="" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col"><img id="card-play-bottom" class="stack-card" src="" /></div>
+                            <div class="col"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col">
                     <div id="player-right">
+                        <div class="timer-ver"><div class="bar-ver"></div></div>
                         <img class="card-hor" src="assets/img/cards/back.png" />
                         <img class="card-hor" src="assets/img/cards/back.png" />
                         <img class="card-hor" src="assets/img/cards/back.png" />
@@ -83,16 +90,17 @@
             <div class="row">
                 <div class="col">
                     <div id="player-bottom">
-                        <img class="card-ver" src="assets/img/cards/k1.png" />
-                        <img class="card-ver" src="assets/img/cards/d7.png" />
-                        <img class="card-ver" src="assets/img/cards/b2.png" />
-                        <img class="card-ver" src="assets/img/cards/b3.png" />
-                        <img class="card-ver" src="assets/img/cards/s12.png" />
-                        <img class="card-ver" src="assets/img/cards/k5.png" />
-                        <img class="card-ver" src="assets/img/cards/s2.png" />
-                        <img class="card-ver" src="assets/img/cards/d3.png" />
-                        <img class="card-ver" src="assets/img/cards/d13.png" />
-                        <img class="card-ver" src="assets/img/cards/b11.png" />
+                        <div class="timer-hor"><div class="bar-hor"></div></div>
+                        <img class="card-ver" src="assets/img/cards/back.png" />
+                        <img class="card-ver" src="assets/img/cards/back.png" />
+                        <img class="card-ver" src="assets/img/cards/back.png" />
+                        <img class="card-ver" src="assets/img/cards/back.png" />
+                        <img class="card-ver" src="assets/img/cards/back.png" />
+                        <img class="card-ver" src="assets/img/cards/back.png" />
+                        <img class="card-ver" src="assets/img/cards/back.png" />
+                        <img class="card-ver" src="assets/img/cards/back.png" />
+                        <img class="card-ver" src="assets/img/cards/back.png" />
+                        <img class="card-ver" src="assets/img/cards/back.png" />
                     </div>
                 </div>
             </div>
