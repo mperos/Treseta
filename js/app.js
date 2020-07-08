@@ -390,7 +390,6 @@ async function play_game()
         }
         if(turn%4 == 0)
         {
-            alert(turn);
             await $.get("./php/game.php", { function: 'myturn'}, function(data){
                 user_turn = parseInt(data);
             });
@@ -548,22 +547,22 @@ async function is_end()
             {
                 if(newdata.user_order[0] == user_id || newdata.user_order[2]==user_id)
                 {
-                    poruka = "<p>Pobjedili ste!</p><p>" + p1 + " : "+ p2+"</p>";
+                    poruka = "<p style='font-size:160%;'><b>Pobjedili ste!</b></p><p style='font-size:160%;'><b>" + p1 + " : "+ p2+"</b></p>";
                 }
                 else
                 {
-                    poruka = "<p>Izgubili ste!</p><p>" + p2 + " : "+ p1+"</p>";
+                    poruka = "<p style='font-size:160%;'><b>Izgubili ste!</b></p><p style='font-size:160%;'><b>" + p2 + " : "+ p1+"</b></p>";
                 }
             }
             else
             {
                 if(newdata.user_order[0] == user_id || newdata.user_order[2]==user_id)
                 {
-                    poruka = "<p>Izgubili ste!</p><p>" + p1 + " : "+ p2+"</p>";
+                    poruka = "<p style='font-size:160%;'><b>Izgubili ste!</b></p><p style='font-size:160%;'><b>" + p1 + " : "+ p2+"</b></p>";
                 }
                 else
                 {
-                    poruka = "<p>Pobjedili ste!</p><p>" + p2 + " : "+ p1+"</p>";
+                    poruka = "<p style='font-size:160%;'><b>Pobjedili ste!</b></p><p style='font-size:160%;'><b>" + p2 + " : "+ p1+"</b></p>";
                 }
             }
             game_over = true;
@@ -602,16 +601,16 @@ async function wait_start()
 
 async function start_treseta()
 {
-    /*await send_data();
+    await send_data();
+    /*
     while(you_cant_start_game)
     {
         await wait_start();
     }
 
     //$.get("./php/database/create_tables.php", { cards: myJSON});
-
-
-   // await get_user_id();
+    // await get_user_id();
+    
     if(user_turn == 0)
     {
         await set_game();
@@ -644,16 +643,16 @@ async function start_treseta()
         }
     }*/
     poruka+= '<button id="exitnow" value ="Exit"> Exit </button>';
+    $("#stack").css("text-align", "center");
+    $("#stack").html("").append(poruka);
+    $("#exitnow").css("padding", "15px 32px").css("font-size", "20px");
     
     $("#exitnow").click(function() { 
-        alert(12);
-        $.get("./php/game.php", { function: 'exit'}, function(data){
-            $("#login_id").val(getCookie("login_id"));
-            $("#room_id").val(getCookie("room_id"));
-            $("#game_form").submit();
+        $.get("./php/game.php", { function: 'exit' }, function(data) {
+            $("#login_id2").val(getCookie("login_id"));
+            $("#return_form").submit();
         });
     });
-    $("#stack").html("").append(poruka);
 }
 
 $(document).ready(function() {

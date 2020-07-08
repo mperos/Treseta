@@ -14,10 +14,10 @@ if(isset($_GET) && isset($_GET['function']))
         $room = $_SESSION['room_id'];
         $db = DB::getConnection();
         $st = $db->prepare("DELETE FROM treseta_rooms WHERE room_id=:room");
-        $st->execute();
+        $st->execute(["room" => $room]);
 
         $st = $db->prepare("DELETE FROM treseta_games WHERE room_id=:room");
-        $st->execute();
+        $st->execute(["room" => $room]);
     }
     if($_GET['function'] == 'wait')
     {

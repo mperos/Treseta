@@ -13,11 +13,11 @@
 
         <title>Trešeta</title>
     </head>
-    <body>
-        <form style="display: none" action="frontpage.html" method="POST" id="game_form">
-            <input type="hidden" id="login_id" name="login_id" value=""/>
-            <input type="hidden" id="room_id" name="room_id" value=""/>
+    <body onunload="saveFrontData()">
+        <form style="display: none" action="frontpage.html" method="POST" id="return_form">
+            <input type="hidden" id="login_id2" name="login_id2" value=""/>
         </form>
+
         <div class="container" id="table">
             <div class="row">
                 <div class="col">

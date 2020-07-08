@@ -39,11 +39,10 @@ function rooms() {
                 $("#front-page").append("<tr>");
                 var room_id = data["room_id"][i];
                 var room_name = data["room_name"][i];
-                // var room_status = data["room_status"][i];    - ovo mi mozda ni ne triba
-                var room_users = data["room_users"][i];
+                var room_users = JSON.parse(data["room_users"][i]);
                 
                 $("#front-page").append("<td>" + room_name + "</td>");
-                $("#front-page").append("<td>" + room_users.length + "</td>");  // ovo triba popravit
+                $("#front-page").append("<td>" + room_users.users.length + "</td>");
                 $("#front-page").append("<td> <button id='btn_" + room_id + "' value ='" + room_id + "'> Enter </button> </td>");
                 $("#front-page").append("</tr>");
 
@@ -116,7 +115,7 @@ function logout() {
         success: function() {
             $("#front-page").html("");
             /*
-            $.getScript("cookies.js", function(){
+            $.getScript("cookies.js", function() {
                 deleteCookie("login_id");
             });
             */

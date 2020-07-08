@@ -78,3 +78,9 @@ function checkSentData() {
     console.log("Login ID: ", getCookie("login_id"));
     console.log("Room ID: ", getCookie("room_id"));
 }
+
+function saveFrontData() { 
+    var login_id = $("#login_id2").val();
+    var expDate = getExpDate(180, 0, 0); 
+    setCookie("login_id", login_id, expDate);
+}
